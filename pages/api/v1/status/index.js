@@ -1,7 +1,7 @@
 import database from "infra/database.js";
 
 async function status(request, response) {
-  const result = await database.query("SELECT 1 + 1 as sum;");
+  // const result = await database.query("SELECT 1 + 1 as sum;");
 
   const updatedAt = new Date().toISOString();
 
@@ -16,7 +16,6 @@ async function status(request, response) {
 
   const openedConnections = databaseOpenedConnectionsResult.rows[0].count;
 
-  console.log(openedConnections);
   const version = await database.query("SHOW server_version;");
 
   // const pgMaxConnections = process.env.POSTGRES_HOST.max_connections;
