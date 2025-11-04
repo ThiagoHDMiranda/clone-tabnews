@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "npm run services:upd && next dev",
+    "dev": "next dev",
+    "dev:docker": "npm run services:upd && next dev",
     "lint:check": "prettier --check .",
     "lint:fix": "prettier --write .",
     "test": "jest",
@@ -12,12 +13,16 @@
     "services:up": "docker compose --file infra/compose.yaml up",
     "services:upd": "docker compose --file infra/compose.yaml up --detach",
     "services:stop": "docker compose --file infra/compose.yaml stop",
-    "services:down": "docker compose --file infra/compose.yaml down"
+    "services:down": "docker compose --file infra/compose.yaml down",
+    "migration:create": "node-pg-migrate --migrations-dir infra/migrations create",
+    "migration:up": "node-pg-migrate --migrations-dir infra/migrations --envPath .env.development up"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "dotenv": "^16.4.4",
     "next": "^13.5.6",
+    "node-pg-migrate": "^6.2.2",
     "pg": "^8.11.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
