@@ -8,7 +8,7 @@
     "dev:docker": "npm run services:upd && npm run wait-for-postgres && npm run migration:up && next dev",
     "lint:check": "prettier --check .",
     "lint:fix": "prettier --write .",
-    "test": "jest --runInBand",
+    "test": "npm run services:upd && concurrently --names next,jest --hide next --kill-others --success command-jest \"next dev\" \"jest --runInBand --verbose\"",
     "test:watch": "jest --watchAll --runInBand",
     "services:up": "docker compose --file infra/compose.yaml up",
     "services:upd": "docker compose --file infra/compose.yaml up --detach",
@@ -21,6 +21,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "async-retry": "^1.3.3",
     "dotenv": "^16.4.4",
     "dotenv-expand": "^11.0.6",
     "next": "^13.5.6",
@@ -30,6 +31,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "concurrently": "^8.2.2",
     "jest": "^29.6.2",
     "prettier": "^3.2.5"
   }
