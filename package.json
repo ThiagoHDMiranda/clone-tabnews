@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "next dev",
     "dev:docker": "npm run services:upd && npm run wait-for-postgres && npm run migration:up && next dev",
-    "lint:check": "prettier --check .",
-    "lint:fix": "prettier --write .",
+    "lint:prettier:check": "prettier --check .",
+    "lint:prettier:fix": "prettier --write .",
     "test": "npm run services:upd && concurrently --names next,jest --hide next --kill-others --success command-jest \"next dev\" \"jest --runInBand --verbose\"",
     "test:watch": "jest --watchAll --runInBand",
     "services:up": "docker compose --file infra/compose.yaml up",
