@@ -7,6 +7,7 @@
     "dev": "next dev",
     "dev:docker": "npm run services:upd && npm run services:wait:database && npm run migrations:up && next dev",
     "test": "npm run services:upd && concurrently --names next,jest --hide next --kill-others --success command-jest \"next dev\" \"jest --runInBand --verbose\"",
+    "posttest": "npm run services:stop",
     "test:watch": "jest --watchAll --runInBand",
     "services:up": "docker compose --file infra/compose.yaml up",
     "services:upd": "docker compose --file infra/compose.yaml up --detach",
