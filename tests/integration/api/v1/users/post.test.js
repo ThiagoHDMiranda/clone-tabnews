@@ -108,9 +108,9 @@ describe("POST /api/v1/users", () => {
 
       expect(response2.status).toBe(400);
 
-      const responseBody2 = await response2.json();
+      const response2Body = await response2.json();
 
-      expect(responseBody2).toEqual({
+      expect(response2Body).toEqual({
         name: "ValidationError",
         message: "O username informado já está sendo utilizado.",
         action: "Utilize outro username para realizar o cadastro.",
