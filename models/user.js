@@ -107,8 +107,6 @@ async function runUpdateQuery(userWithNewValues) {
     ],
   });
 
-  console.log(results);
-
   return results.rows[0];
 }
 
